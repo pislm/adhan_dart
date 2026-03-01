@@ -4,6 +4,7 @@ import 'package:adhan_dart/adhan_dart.dart';
 enum CalculationMethod {
   dubai,
   egyptian,
+  indonesia,
   karachi,
   kuwait,
   moonsightingCommittee,
@@ -48,6 +49,26 @@ class CalculationMethodParameters {
     CalculationParameters params = CalculationParameters(
         method: CalculationMethod.egyptian, fajrAngle: 19.5, ishaAngle: 17.5);
     params.methodAdjustments = {Prayer.dhuhr: 1};
+    return params;
+  }
+
+  /// Indonesia (Kemenag)
+  /// 
+  /// Settings:
+  /// - Fajr Angle: 20°
+  /// - Isha Angle: 18°
+  /// - Method Adjustments: All prayers +2min, Sunrise -2min
+  static CalculationParameters indonesia() {
+    CalculationParameters params = CalculationParameters(
+        method: CalculationMethod.indonesia, fajrAngle: 20, ishaAngle: 18);
+    params.methodAdjustments = {
+      Prayer.fajr: 2,
+      Prayer.sunrise: -2,
+      Prayer.dhuhr: 2,
+      Prayer.asr: 2,
+      Prayer.maghrib: 2,
+      Prayer.isha: 2
+    };
     return params;
   }
 
